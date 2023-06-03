@@ -39,7 +39,7 @@ function App() {
 
             <div className='col-12 col-md-6'>
               <div className='pt-3 customCard tertiaryColor' >
-                <div className='fs-5 fw-bolder mb-3 text-center'>
+                <div className='fs-4 fw-bolder pb-3 text-center borderBottom'>
                   Danh sách công việc
                 </div>
                 <div className="row px-0 mx-0">
@@ -59,7 +59,7 @@ function App() {
 
         </div>
       </div>
-    </TodoContext.Provider>
+    </TodoContext.Provider >
   );
 }
 

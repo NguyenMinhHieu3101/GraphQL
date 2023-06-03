@@ -1,40 +1,36 @@
 body {
-  background-color: gray;
-}
-.todobox {
-  background-color: #fafafa;
-  max-width: 400px;
-  margin: 5% auto;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
 .customCard {
   border-radius: 16px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(15px);
   overflow: hidden;
+}
+
+.borderBottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .customInput {
   border-radius: 8px;
-  overflow: hidden;
   border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .primaryColor {
-  /* background-color: rgba(60, 98, 85, 0.9); */
+  background-color: rgba(255, 255, 255, 0.6);
   color: rgb(27, 50, 45) !important;
 }
 
 .secondaryColor {
-  /* background-color: rgba(0, 107, 108, 0.9) !important; */
+  background-color: rgba(255, 255, 255, 0.6);
   color: rgb(27, 50, 45) !important;
 }
 
 .tertiaryColor {
-  /* background-color: rgba(2, 119, 107, 0.9) !important; */
+  background-color: rgba(255, 255, 255, 0.6);
   color: rgb(27, 50, 45) !important;
 }
 
@@ -43,5 +39,11 @@ body {
 }
 
 .contentBgColor {
-  background-color: rgba(211, 236, 220, 0.4);
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.contentHover:hover {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  background-color: rgba(255, 255, 255, 0.5);
 }

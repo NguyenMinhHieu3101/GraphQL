@@ -21,17 +21,31 @@ const Todo = ({ id, title, date, detail }) => {
     })
   }
   return (
-    <div className=" col-12 p-3 list-group-item-action contentBgColor"
+    <div className=" col-12 p-3 contentBgColor borderBottom contentHover"
       style={{
         cursor: 'pointer',
-        backgroundColor: selectedId === id ? 'white' : '',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.2)',
+        backgroundColor: selectedId === id ? 'rgba(255, 255, 255, 1)' : '',
+        boxShadow: selectedId === id ? 'rgba(17, 17, 26, 0.1) 0px 8px 24px,rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px' : '',
       }}>
       <div className='row align-items-center justify-content-between'>
-        <div onClick={() => setSelectedId(id)} className='col'>
-          <div className='mb-0 fs-5 fw-bolder' >{title}</div>
-          <div className='text-muted mb-1 fs-6 '>{moment(date).format(`DD/MM/YYYY`)}</div>
-          <div className='text-break fs-6'>{detail}</div>
+        <div onClick={() => setSelectedId(id)}
+          className='col'
+        >
+          <div className='mb-0 fs-5 fw-bolder'
+            style={{
+              color: selectedId === id ? 'black' : ''
+            }}
+          >{title}</div>
+          <div className='mb-1 fs-6 '
+            style={{
+              color: selectedId === id ? 'black' : ''
+            }}
+          >{moment(date).format(`DD/MM/YYYY`)}</div>
+          <div className='text-break fs-6'
+            style={{
+              color: selectedId === id ? 'black' : ''
+            }}
+          >{detail}</div>
         </div>
         <div className='col-auto'>
           <button
