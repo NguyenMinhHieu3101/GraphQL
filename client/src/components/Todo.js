@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import moment from 'moment';
 import { useMutation } from '@apollo/client';
 import { DELETE_TODO } from '../graphql/Mutation';
@@ -6,34 +6,45 @@ import { GET_TODOS } from '../graphql/Query';
 import { TodoContext } from '../TodoContext';
 
 
-const Todo = ({id, title, date, detail}) => {
-    const {selectedId, setSelectedId} = useContext(TodoContext)
+const Todo = ({ id, title, date, detail }) => {
+  const { selectedId, setSelectedId } = useContext(TodoContext)
   const [deleteTodo] = useMutation(DELETE_TODO);
-  const removeTodo = (id)=> {
+  const removeTodo = (id) => {
     deleteTodo({
-        variables: {
-            id: id 
-        }, refetchQueries:[
-            {
-                query: GET_TODOS
-            }
-        ]
+      variables: {
+        id: id
+      }, refetchQueries: [
+        {
+          query: GET_TODOS
+        }
+      ]
     })
   }
-    return (
-    <a href="#" onClick= {()=> setSelectedId(id)}
-     className="list-group-item list-group-item-action flex-column align-items-start">
-    <div className="d-flex w-100 justify-content-between">
-      <h5 className="mb-1">{title}</h5>
-      <small>{moment(date).format("MMM DD YY")}</small>
+  return (
+    <div className=" col-12 p-3 list-group-item-action contentBgColor"
+      style={{
+        cursor: 'pointer',
+        backgroundColor: selectedId === id ? 'white' : '',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.2)',
+      }}>
+      <div className='row align-items-center justify-content-between'>
+        <div onClick={() => setSelectedId(id)} className='col'>
+          <div className='mb-0 fs-5 fw-bolder' >{title}</div>
+          <div className='text-muted mb-1 fs-6 '>{moment(date).format(`DD/MM/YYYY`)}</div>
+          <div className='text-break fs-6'>{detail}</div>
+        </div>
+        <div className='col-auto'>
+          <button
+            onClick={() => removeTodo(id)}
+            style={{ color: 'grey', backgroundColor: 'transparent', border: 'none' }}
+            onMouseOver={(e) => { e.target.style.opacity = '0.5'; }}
+            onMouseOut={(e) => { e.target.style.opacity = '1'; }}
+            type="button">
+            <i className="fa-solid fa-trash-can" style={{ pointerEvents: 'none' }}></i>
+          </button>
+        </div>
+      </div>
     </div>
-    <p className="mb-1">{detail}</p>
-    <small onClick = {()=> removeTodo(id)}><svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
-      <path d = "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm4 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-      <path fillRule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-
-      </svg></small>
-  </a>
   )
 }
 

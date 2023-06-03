@@ -1,41 +1,41 @@
 import Todo from './model/Todo.js'
 const resolvers = {
-    Query:{
-        welcome:()=>{
+    Query: {
+        welcome: () => {
             return "Welcome to ckmobile"
         },
-        getTodos:async()=>{
+        getTodos: async () => {
             const todos = await Todo.find()
             return todos
         },
-        getTodo:async(root, args)=>{
+        getTodo: async (root, args) => {
             const todo = await Todo.findById(args.id)
             return todo
         }
     },
-    Mutation:{
-        addTodo:async(root, args)=>{
-            const newTodo = new Todo({title: args.title,detail:args.detail,date:args.date})
+    Mutation: {
+        addTodo: async (root, args) => {
+            const newTodo = new Todo({ title: args.title, detail: args.detail, date: args.date })
             await newTodo.save()
             return newTodo;
         },
-        deleteTodo:async(root, args)=>{
+        deleteTodo: async (root, args) => {
             await Todo.findByIdAndDelete(args.id);
             return "The todo deleted sucessfully"
         },
-        updateTodo: async (root, args)=>{
-            const {id,title, detail, date} = args
+        updateTodo: async (root, args) => {
+            const { id, title, detail, date } = args
             const updatedTodo = {};
-            if(title!= undefined){
+            if (title != undefined) {
                 updatedTodo.title = title
             }
-            if(detail!= undefined){
+            if (detail != undefined) {
                 updatedTodo.detail = detail
             }
-            if(date!= undefined){
+            if (date != undefined) {
                 updatedTodo.date = date
             }
-            const todo = await Todo.findByIdAndUpdate (id,updatedTodo, {new: true})
+            const todo = await Todo.findByIdAndUpdate(id, updatedTodo, { new: true })
 
             return todo;
         }

@@ -15,7 +15,7 @@ const AddTodos = () => {
   const { loading, error, data, refetch } = useQuery(GET_TODO, {
     variables: { id: selectedId },
     skip: selectedId === 0, // Skip the query if selectedId is 0
-    onCompleted: (data) => setTodo(data.getTodo),
+    onCompleted: (data) => { console.log(data); setTodo(data.getTodo) },
   });
 
   const inputAreaRef = useRef();
@@ -25,6 +25,11 @@ const AddTodos = () => {
       if (!inputAreaRef.current.contains(e.target)) {
         console.log('Outside input area');
         setSelectedId(0);
+        setTodo({
+          title: '',
+          detail: '',
+          date: '',
+        })
       } else {
         console.log('Inside input area');
       }
@@ -46,10 +51,10 @@ const AddTodos = () => {
     },
     refetchQueries: [{ query: GET_TODOS }] // Add this line to refetch the GET_TODOS query after adding a new todo
   });
-  
+
 
   const onSubmit = (e) => {
-    if(todo.title == ""){
+    if (todo.title == "") {
       alert('Please Enter The Title');
       return;
     }
@@ -77,7 +82,7 @@ const AddTodos = () => {
 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='fs-6 fw-bolder customCard p-3 bg-white'>Chờ chút...</div>;
   }
 
   if (error) {
@@ -85,40 +90,56 @@ const AddTodos = () => {
   }
 
   return (
-    <form onSubmit={onSubmit} ref={inputAreaRef}>
-      <div className="form-group">
-        <label>Title:</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter title"
-          value={todo.title}
-          onChange={(e) => setTodo({ ...todo, title: e.target.value })}
-        />
+    <div className='customCard pt-3 secondaryColor'>
+      <div className='fs-5 fw-bolder mb-3 text-center '>
+        Công việc
       </div>
-      <div className="form-group">
-        <label>Detail:</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter detail"
-          value={todo.detail}
-          onChange={(e) => setTodo({ ...todo, detail: e.target.value })}
-        />
-      </div>
-      <div className="form-group">
-        <label>Date:</label>
-        <input
-          type="date"
-          className="form-control"
-          value={todo.date}
-          onChange={(e) => setTodo({ ...todo, date: e.target.value })}
-        />
-      </div>
-      <button type="submit" className="btn btn-default">
-        {selectedId === 0 ? 'Add' : 'Update'}
-      </button>
-    </form>
+      <form onSubmit={onSubmit} ref={inputAreaRef} className='d-flex flex-column p-3 contentBgColor'
+      >
+        <div className="form-group mb-2">
+          <label className='fs-6 fw-bolder mb-1'>Tiêu đề:</label>
+          <input
+            type="text"
+            className="form-control customInput fs-6 fw-bolder"
+            placeholder="Nhập tiêu đề"
+            value={todo.title}
+            onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+          />
+        </div>
+        <div className="form-group mb-2">
+          <label className='fs-6 fw-bolder mb-1'>Ngày:</label>
+          <input
+            type="date"
+            className="form-control customInput fs-6"
+            value={todo.date.split('T')[0]}
+            onChange={(e) => setTodo({ ...todo, date: e.target.value })}
+          />
+        </div>
+        <div className="form-group mb-2">
+          <label className='fs-6 fw-bolder mb-1'>Chi tiết:</label>
+          <textarea
+            type="text"
+            className="form-control customInput fs-6"
+            style={{
+              minHeight: '100px',
+            }}
+            placeholder="Chi tiết công việc"
+            value={todo.detail}
+            onChange={(e) => setTodo({ ...todo, detail: e.target.value })}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary flex-fill mt-3 fs-6 fw-bolder buttonBgColor"
+          style={{
+            border: 'none',
+          }}
+          onMouseOver={(e) => { e.target.style.opacity = '0.5'; }}
+          onMouseOut={(e) => { e.target.style.opacity = '1'; }}
+        >
+          {selectedId === 0 ? 'Thêm' : 'Chỉnh sửa'}
+        </button>
+      </form>
+    </div>
   );
 };
 

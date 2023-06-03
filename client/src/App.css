@@ -1,11 +1,47 @@
-body{
+body {
   background-color: gray;
 }
-.todobox{
+.todobox {
   background-color: #fafafa;
   max-width: 400px;
   margin: 5% auto;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.customCard {
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+.customInput {
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+}
+
+.primaryColor {
+  /* background-color: rgba(60, 98, 85, 0.9); */
+  color: rgb(27, 50, 45) !important;
+}
+
+.secondaryColor {
+  /* background-color: rgba(0, 107, 108, 0.9) !important; */
+  color: rgb(27, 50, 45) !important;
+}
+
+.tertiaryColor {
+  /* background-color: rgba(2, 119, 107, 0.9) !important; */
+  color: rgb(27, 50, 45) !important;
+}
+
+.buttonBgColor {
+  background-color: rgba(2, 119, 107, 0.9) !important;
+}
+
+.contentBgColor {
+  background-color: rgba(211, 236, 220, 0.4);
 }

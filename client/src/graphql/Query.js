@@ -7,12 +7,11 @@ export const GET_TODOS =
           title
           detail
           date
-        
       }
     }
     `;
 
-    export const GET_TODO =
+export const GET_TODO =
     gql`query getTodo($id:ID)
    {
       getTodo(id:$id) {
