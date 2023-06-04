@@ -67,7 +67,7 @@ const AddTodos = () => {
           date: todo?.date,
         },
       });
-      alert('Thêm thành công');
+      alert('Thêm thành công!');
     } else {
       updateTodo({
         variables: {
