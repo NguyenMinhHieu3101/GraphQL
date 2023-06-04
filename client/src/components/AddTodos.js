@@ -56,7 +56,7 @@ const AddTodos = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (todo.title == "") {
-      alert('Vui lòng nhập tiều đề');
+      alert('Vui lòng nhập tiều đề!');
       return;
     }
     if (selectedId === 0) {
