@@ -2,7 +2,7 @@ import Todo from './model/Todo.js'
 const resolvers = {
     Query: {
         welcome: () => {
-            return "Welcome to ckmobile"
+            return "Welcome to Nhom16!"
         },
         getTodos: async () => {
             const todos = await Todo.find()
