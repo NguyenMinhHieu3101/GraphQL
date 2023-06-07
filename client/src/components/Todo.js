@@ -24,7 +24,7 @@ const Todo = ({ id, title, date, detail, bgColor }) => {
     <div className=" col-12 p-3 contentBgColor borderBottom contentHover"
       style={{
         cursor: 'pointer',
-        backgroundColor: selectedId === id ? 'rgba(255, 255, 255, 1)' : new Date(date) <= new Date() ? 'rgba(254, 161, 161, 0.07)' : '',
+        backgroundColor: selectedId === id ? 'rgba(255, 255, 255, 1)' : new Date(date) < new Date() ? 'rgba(254, 161, 161, 0.07)' : '',
         boxShadow: selectedId === id ? 'rgba(17, 17, 26, 0.1) 0px 8px 24px,rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px' : '',
       }}>
       <div className='row align-items-center justify-content-between'>
