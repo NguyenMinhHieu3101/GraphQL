@@ -6,7 +6,9 @@ const resolvers = {
         },
         getTodos: async () => {
             const todos = await Todo.find()
-            return todos
+            return todos.sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
+            })
         },
         getTodo: async (root, args) => {
             const todo = await Todo.findById(args.id)

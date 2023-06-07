@@ -22,7 +22,7 @@ const AddTodos = () => {
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
-      if (!inputAreaRef.current.contains(e.target)) {
+      if (inputAreaRef.current && !inputAreaRef.current.contains(e.target)) {
         console.log('Outside input area');
         setSelectedId(0);
         setTodo({
@@ -109,9 +109,10 @@ const AddTodos = () => {
           />
         </div>
         <div className="form-group mb-3">
-          <label className='fs-5 fw-bolder mb-2'>Thời gian:</label>
+          <label className='fs-5 fw-bolder mb-2'>Thời hạn:</label>
           <input
             type="date"
+            min={new Date().toISOString().split('T')[0]}
             className="form-control customInput fs-6"
             value={todo.date.split('T')[0]}
             onChange={(e) => setTodo({ ...todo, date: e.target.value })}
