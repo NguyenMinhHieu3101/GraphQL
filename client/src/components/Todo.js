@@ -10,15 +10,21 @@ const Todo = ({ id, title, date, detail, bgColor }) => {
   const { selectedId, setSelectedId } = useContext(TodoContext)
   const [deleteTodo] = useMutation(DELETE_TODO);
   const removeTodo = (id) => {
-    deleteTodo({
-      variables: {
-        id: id
-      }, refetchQueries: [
-        {
-          query: GET_TODOS
-        }
-      ]
-    })
+    const result = window.confirm("Bạn chắc chắn muốn xóa?");
+    if (result) {
+      deleteTodo({
+        variables: {
+          id: id
+        }, refetchQueries: [
+          {
+            query: GET_TODOS
+          }
+        ]
+      })
+    } else {
+      // user clicked cancel
+    }
+
   }
   return (
     <div className=" col-12 p-3 contentBgColor borderBottom contentHover"

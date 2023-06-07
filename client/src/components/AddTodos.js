@@ -112,7 +112,6 @@ const AddTodos = () => {
           <label className='fs-5 fw-bolder mb-2'>Thời hạn:</label>
           <input
             type="date"
-            min={new Date().toISOString().split('T')[0]}
             className="form-control customInput fs-6"
             value={todo.date.split('T')[0]}
             onChange={(e) => setTodo({ ...todo, date: e.target.value })}
